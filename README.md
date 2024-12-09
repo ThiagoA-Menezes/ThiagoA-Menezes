@@ -1,7 +1,7 @@
 
-# Olá, me chamo Thiago e sou um apaixonado por tecnologia, gosto de aprender e me desafiar, por isso aqui você vai encontrar uma seria de códigos e façanhas que eu fiz utilizando programação, ou não. 
+## Olá, me chamo Thiago e sou um apaixonado por tecnologia, gosto de aprender e me desafiar, por isso aqui você vai encontrar uma seria de códigos e façanhas que eu fiz utilizando programação, ou não. 
 
-## Sou Analista de Dados, passei parte da minha vida analizando informações para realizar estudos de viabilidade e desenvolvimento de produtos, atualmente sou Técnico e estou buscando fortalecer cada vez mais essa base.
+Sou Analista de Dados, passei parte da minha vida analizando informações para realizar estudos de viabilidade e desenvolvimento de produtos, atualmente sou Técnico e estou buscando fortalecer cada vez mais essa base.
 
 Seja bem vindo, no meu profile você encontra o meu Linkedin se quiser me mandar uma mensagem!
 
