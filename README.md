@@ -14,6 +14,10 @@ Gosto muito de desenvolver em Python, mas também posso falar de:
 * Automação de Negócios com ferramentas de Workflow e Decisões
 * RPA (Robotic Process Automation)
 * Estratégia.
+
+## Contato
+Thiago Menezes - [LinkedIn](https://www.linkedin.com/in/thiagoamenezes/)  
+Email: assis.thiago@gmail.com 
 <!--
 **ThiagoA-Menezes/ThiagoA-Menezes** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
