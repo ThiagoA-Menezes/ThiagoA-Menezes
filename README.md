@@ -15,9 +15,9 @@ I really enjoy developing in Python, but I can also talk about:
 * RPA (Robotic Process Automation)  
 * Strategy.  
 
-## Contato
+## Contact
 Thiago Menezes - [LinkedIn](https://www.linkedin.com/in/thiagoamenezes/)  
-Email: assis.thiago@gmail.com 
+E-mail: assis.thiago@gmail.com 
 <!--
 **ThiagoA-Menezes/ThiagoA-Menezes** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
