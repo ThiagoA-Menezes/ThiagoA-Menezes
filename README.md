@@ -1,19 +1,19 @@
 
-## Olá, me chamo Thiago e sou um apaixonado por tecnologia, gosto de aprender e me desafiar, por isso aqui você vai encontrar uma seria de códigos e façanhas que eu fiz utilizando programação, ou não. 
+## Hello, my name is Thiago, and I am passionate about technology. I enjoy learning and challenging myself, which is why here you will find a series of codes and feats that I have accomplished using programming—or not.
 
-Sou Analista de Dados, passei parte da minha vida analizando informações para realizar estudos de viabilidade e desenvolvimento de produtos, atualmente sou Técnico e estou buscando fortalecer cada vez mais essa base.
+I am a Data Analyst and have spent part of my life analyzing information to conduct feasibility studies and product development. Currently, I am a Technician and am continually striving to strengthen this foundation.
 
-Seja bem vindo, no meu profile você encontra o meu Linkedin se quiser me mandar uma mensagem!
+Welcome! On my profile, you can find my LinkedIn if you'd like to send me a message!
 
-Gosto muito de desenvolver em Python, mas também posso falar de:
-* SQL
-* MS Excel
-* ETL
-* Dashboards
-* Análise de Dados
-* Automação de Negócios com ferramentas de Workflow e Decisões
-* RPA (Robotic Process Automation)
-* Estratégia.
+I really enjoy developing in Python, but I can also talk about:
+* SQL  
+* MS Excel  
+* ETL  
+* Dashboards  
+* Data Analysis  
+* Business Automation with Workflow and Decision Tools  
+* RPA (Robotic Process Automation)  
+* Strategy.  
 
 ## Contato
 Thiago Menezes - [LinkedIn](https://www.linkedin.com/in/thiagoamenezes/)  
