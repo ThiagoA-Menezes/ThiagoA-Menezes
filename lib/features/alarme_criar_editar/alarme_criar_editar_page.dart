@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:alarme_feriados/core/relogio.dart';
 import 'package:alarme_feriados/domain/models/alarme.dart';
+import 'package:alarme_feriados/features/configuracoes/configuracoes_providers.dart';
 import 'package:alarme_feriados/features/home/home_providers.dart';
 
 class AlarmeCriarEditarPage extends ConsumerStatefulWidget {
@@ -42,11 +44,18 @@ class _AlarmeCriarEditarPageState
 
   Future<void> _escolherHora() async {
     final partes = _hora.split(':');
+    final use24h = ref.read(clockFormatProvider);
     final picked = await showTimePicker(
       context: context,
       initialTime: TimeOfDay(
         hour: int.parse(partes[0]),
         minute: int.parse(partes[1]),
+      ),
+      // Respeita preferência do usuário; não lê MediaQuery para evitar
+      // discrepância entre o picker e a exibição no app.
+      builder: (ctx, child) => MediaQuery(
+        data: MediaQuery.of(ctx).copyWith(alwaysUse24HourFormat: use24h),
+        child: child!,
       ),
     );
     if (picked == null) return;
@@ -105,6 +114,8 @@ class _AlarmeCriarEditarPageState
 
   @override
   Widget build(BuildContext context) {
+    final use24h = ref.watch(clockFormatProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_editando ? 'Editar alarme' : 'Novo alarme'),
@@ -124,7 +135,7 @@ class _AlarmeCriarEditarPageState
             child: GestureDetector(
               onTap: _escolherHora,
               child: Text(
-                _hora,
+                formatarHora(_hora, use24h: use24h),
                 style: Theme.of(context).textTheme.displayLarge,
               ),
             ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:alarme_feriados/core/relogio.dart';
 import 'package:alarme_feriados/domain/models/alarme.dart';
 import 'package:alarme_feriados/features/alarme_criar_editar/alarme_criar_editar_page.dart';
+import 'package:alarme_feriados/features/configuracoes/configuracoes_page.dart';
+import 'package:alarme_feriados/features/configuracoes/configuracoes_providers.dart';
 import 'package:alarme_feriados/features/escala/escala_page.dart';
 import 'package:alarme_feriados/features/feriados/feriados_page.dart';
 import 'package:alarme_feriados/features/home/home_providers.dart';
@@ -21,33 +24,34 @@ class HomePage extends ConsumerWidget {
         actions: [
           PopupMenuButton<String>(
             onSelected: (v) {
-              if (v == 'feriados') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
+              final route = switch (v) {
+                'feriados' => MaterialPageRoute<void>(
                     builder: (_) => const FeriadosPage(),
                   ),
-                );
-              } else if (v == 'escala') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
+                'escala' => MaterialPageRoute<void>(
                     builder: (_) => const EscalaPage(),
                   ),
-                );
-              } else if (v == 'localizacao') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
+                'localizacao' => MaterialPageRoute<void>(
                     builder: (_) => const LocalizacaoPage(),
                   ),
-                );
-              }
+                'configuracoes' => MaterialPageRoute<void>(
+                    builder: (_) => const ConfiguracoesPage(),
+                  ),
+                _ => null,
+              };
+              if (route != null) Navigator.push(context, route);
             },
             itemBuilder: (_) => const [
               PopupMenuItem(value: 'feriados', child: Text('Feriados')),
               PopupMenuItem(value: 'escala', child: Text('Minha escala')),
-              PopupMenuItem(value: 'localizacao', child: Text('Localização')),
+              PopupMenuItem(
+                value: 'localizacao',
+                child: Text('Localização'),
+              ),
+              PopupMenuItem(
+                value: 'configuracoes',
+                child: Text('Configurações'),
+              ),
             ],
           ),
         ],
@@ -82,6 +86,7 @@ class _AlarmeTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(alarmesProvider.notifier);
+    final use24h = ref.watch(clockFormatProvider);
 
     return Dismissible(
       key: ValueKey(alarme.id),
@@ -99,7 +104,7 @@ class _AlarmeTile extends ConsumerWidget {
           onChanged: (_) => notifier.toggleAtivo(alarme),
         ),
         title: Text(
-          alarme.hora,
+          formatarHora(alarme.hora, use24h: use24h),
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         subtitle: Text(

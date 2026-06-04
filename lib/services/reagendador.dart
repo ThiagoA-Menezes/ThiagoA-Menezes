@@ -102,12 +102,7 @@ class Reagendador {
         escala: escala,
       )) continue;
 
-      final partes = alarme.hora.split(':');
-      final alvo = DateTime(
-        dia.year, dia.month, dia.day,
-        int.parse(partes[0]),
-        int.parse(partes[1]),
-      );
+      final alvo = _buildAlarmDateTime(dia, alarme.hora);
       if (alvo.isAfter(DateTime.now())) {
         await AlarmService.agendar(
           id: alarme.id!,
@@ -155,6 +150,14 @@ class Reagendador {
   }
 
   static DateTime _trimTime(DateTime d) => DateTime(d.year, d.month, d.day);
+
+  /// Constrói o DateTime local do alarme a partir de [dia] + [hora] ("HH:mm").
+  /// DateTime() com args posicionais cria hora LOCAL — correto sob mudança de
+  /// fuso/DST porque o SO converte para epoch no momento do agendamento.
+  static DateTime _buildAlarmDateTime(DateTime dia, String hora) {
+    final p = hora.split(':');
+    return DateTime(dia.year, dia.month, dia.day, int.parse(p[0]), int.parse(p[1]));
+  }
 
   static Future<AppDatabase> _abrirDb() async {
     final dir = await getApplicationDocumentsDirectory();

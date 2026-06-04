@@ -1,9 +1,11 @@
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 
 import 'package:alarme_feriados/app.dart';
+import 'package:alarme_feriados/features/configuracoes/configuracoes_providers.dart';
 import 'package:alarme_feriados/services/reagendador.dart';
 
 /// Ponto de entrada do WorkManager — executa em isolate separado.
@@ -33,5 +35,11 @@ void main() async {
       )
       .ignore();
 
-  runApp(const ProviderScope(child: App()));
+  final prefs = await SharedPreferences.getInstance();
+  runApp(
+    ProviderScope(
+      overrides: [sharedPrefsProvider.overrideWithValue(prefs)],
+      child: const App(),
+    ),
+  );
 }
