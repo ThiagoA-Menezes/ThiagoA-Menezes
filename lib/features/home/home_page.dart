@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:alarme_feriados/domain/models/alarme.dart';
 import 'package:alarme_feriados/features/alarme_criar_editar/alarme_criar_editar_page.dart';
+import 'package:alarme_feriados/features/escala/escala_page.dart';
 import 'package:alarme_feriados/features/home/home_providers.dart';
+import 'package:alarme_feriados/features/localizacao/localizacao_page.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -13,7 +15,34 @@ class HomePage extends ConsumerWidget {
     final state = ref.watch(alarmesProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Alarmes')),
+      appBar: AppBar(
+        title: const Text('Alarmes'),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (v) {
+              if (v == 'escala') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => const EscalaPage(),
+                  ),
+                );
+              } else if (v == 'localizacao') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => const LocalizacaoPage(),
+                  ),
+                );
+              }
+            },
+            itemBuilder: (_) => const [
+              PopupMenuItem(value: 'escala', child: Text('Minha escala')),
+              PopupMenuItem(value: 'localizacao', child: Text('Localização')),
+            ],
+          ),
+        ],
+      ),
       body: state.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Erro: $e')),

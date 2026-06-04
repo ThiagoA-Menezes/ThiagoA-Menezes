@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:alarme_feriados/domain/logica/deve_tocar.dart';
 import 'package:alarme_feriados/domain/models/alarme.dart';
+import 'package:alarme_feriados/domain/models/escala_usuario.dart';
 
 void main() {
   // 2025-01-06 = segunda (weekday 1)  /  2025-01-07 = terça (weekday 2)
@@ -60,6 +61,95 @@ void main() {
         alarme: soSegunda,
         dia: DateTime(2025, 1, 7),
         diasFeriados: ['2025-01-07'],
+      ),
+      isFalse,
+    );
+  });
+
+  // ─── Testes de escala ────────────────────────────────────────────────────────
+  // Ciclo 1 trabalho + 2 folga com referência em 2025-01-06 (segunda)
+  // pos 0 = trabalho, pos 1 = folga, pos 2 = folga, pos 3 = trabalho…
+  const escala1x2 = EscalaUsuario(
+    tipo: '1x2',
+    diasTrabalho: 1,
+    diasFolga: 2,
+    dataInicioReferencia: '2025-01-06',
+  );
+
+  test('escala: dia de trabalho (pos 0) não bloqueia alarme', () {
+    expect(
+      deveTocar(
+        alarme: todos,
+        dia: DateTime(2025, 1, 6),
+        diasFeriados: [],
+        escala: escala1x2,
+      ),
+      isTrue,
+    );
+  });
+
+  test('escala: primeiro dia de folga (pos 1) bloqueia alarme', () {
+    expect(
+      deveTocar(
+        alarme: todos,
+        dia: DateTime(2025, 1, 7),
+        diasFeriados: [],
+        escala: escala1x2,
+      ),
+      isFalse,
+    );
+  });
+
+  test('escala: segundo dia de folga (pos 2) bloqueia alarme', () {
+    expect(
+      deveTocar(
+        alarme: todos,
+        dia: DateTime(2025, 1, 8),
+        diasFeriados: [],
+        escala: escala1x2,
+      ),
+      isFalse,
+    );
+  });
+
+  test('escala: próximo ciclo (pos 0 novamente) libera alarme', () {
+    expect(
+      deveTocar(
+        alarme: todos,
+        dia: DateTime(2025, 1, 9),
+        diasFeriados: [],
+        escala: escala1x2,
+      ),
+      isTrue,
+    );
+  });
+
+  test('escala: diasFolga == 0 nunca bloqueia (escala sem rotação)', () {
+    const semFolga = EscalaUsuario(
+      tipo: 'fixo',
+      diasTrabalho: 5,
+      diasFolga: 0,
+      dataInicioReferencia: '2025-01-06',
+    );
+    expect(
+      deveTocar(
+        alarme: todos,
+        dia: DateTime(2025, 1, 7),
+        diasFeriados: [],
+        escala: semFolga,
+      ),
+      isTrue,
+    );
+  });
+
+  test('escala: data anterior à referência tratada corretamente (diff negativo)', () {
+    // Jan 05 = diff -1; ciclo 3; Dart: -1 % 3 = -1 → +3 = 2 → folga
+    expect(
+      deveTocar(
+        alarme: todos,
+        dia: DateTime(2025, 1, 5),
+        diasFeriados: [],
+        escala: escala1x2,
       ),
       isFalse,
     );
