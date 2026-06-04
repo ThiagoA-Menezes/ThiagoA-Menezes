@@ -16,6 +16,7 @@ dependencies:
   path: ^1.9.1
   alarm: ^4.0.0
   permission_handler: ^11.3.0
+  workmanager: ^0.5.0
 
 dev_dependencies:
   flutter_test:
