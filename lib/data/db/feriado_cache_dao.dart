@@ -33,6 +33,16 @@ class FeriadoCacheDao extends DatabaseAccessor<AppDatabase>
   Future<int> deletar(int id) =>
       (delete(feriadosCache)..where((t) => t.id.equals(id))).go();
 
+  Future<List<FeriadoCache>> buscarPorAno(int ano) async =>
+      (await (select(feriadosCache)..where((t) => t.ano.equals(ano))).get())
+          .map(_toDomain)
+          .toList();
+
+  Future<int> deletarPorAnoETipo(int ano, String tipo) =>
+      (delete(feriadosCache)
+            ..where((t) => t.ano.equals(ano) & t.tipo.equals(tipo)))
+          .go();
+
   FeriadoCache _toDomain(FeriadoCacheRow r) => FeriadoCache(
         id: r.id,
         data: r.data,

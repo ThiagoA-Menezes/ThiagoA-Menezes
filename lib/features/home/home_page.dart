@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:alarme_feriados/domain/models/alarme.dart';
 import 'package:alarme_feriados/features/alarme_criar_editar/alarme_criar_editar_page.dart';
 import 'package:alarme_feriados/features/escala/escala_page.dart';
+import 'package:alarme_feriados/features/feriados/feriados_page.dart';
 import 'package:alarme_feriados/features/home/home_providers.dart';
 import 'package:alarme_feriados/features/localizacao/localizacao_page.dart';
 
@@ -20,7 +21,14 @@ class HomePage extends ConsumerWidget {
         actions: [
           PopupMenuButton<String>(
             onSelected: (v) {
-              if (v == 'escala') {
+              if (v == 'feriados') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => const FeriadosPage(),
+                  ),
+                );
+              } else if (v == 'escala') {
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
@@ -37,6 +45,7 @@ class HomePage extends ConsumerWidget {
               }
             },
             itemBuilder: (_) => const [
+              PopupMenuItem(value: 'feriados', child: Text('Feriados')),
               PopupMenuItem(value: 'escala', child: Text('Minha escala')),
               PopupMenuItem(value: 'localizacao', child: Text('Localização')),
             ],
