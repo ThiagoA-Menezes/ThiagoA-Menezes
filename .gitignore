@@ -1,5 +1,26 @@
+# macOS
 .DS_Store
+
+# Env / secrets
 .env
+
+# Python (legado do repo de perfil)
 __pycache__/
 *.pyc
+
+# Node
 node_modules/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+*.g.dart
+*.freezed.dart
+
+# Android — gerado localmente, nunca commitar
+android/local.properties
+android/.gradle/
+android/key.properties
+android/app/release/
