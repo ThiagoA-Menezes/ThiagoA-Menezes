@@ -12,6 +12,7 @@ Bridging advanced analytics, AI governance, and enterprise architecture — turn
 - 🤖 **IBM watsonx** — pre-sales, solution architecture, and competitive intelligence for watsonx.ai, watsonx.data, and watsonx.governance
 - ⚙️ **Data Engineering** — ETL/ELT pipelines, Apache Spark, Kafka, Airflow, dbt, CDC
 - 🐍 **Python & Automation** — productivity tooling, Salesforce automation, data analysis
+- 📱 **Mobile (Flutter)** — cross-platform apps with AlarmKit, Riverpod, Drift, and REST API integration
 - 🎯 **C-Level Engagement** — translating technical depth into business value
 
 ---
@@ -26,10 +27,20 @@ Bridging advanced analytics, AI governance, and enterprise architecture — turn
 [![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://thiagoa-menezes.github.io)
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://thiagoa-menezes.github.io)
 [![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)](https://thiagoa-menezes.github.io)
+[![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)](https://thiagoa-menezes.github.io)
+[![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://thiagoa-menezes.github.io)
 [![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)](https://thiagoa-menezes.github.io)
 [![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://thiagoa-menezes.github.io)
 [![Selenium](https://img.shields.io/badge/-selenium-%43B02A?style=for-the-badge&logo=selenium&logoColor=white)](https://thiagoa-menezes.github.io)
 [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://thiagoa-menezes.github.io)
+
+---
+
+### Featured Projects
+
+[![smartAlarm](https://img.shields.io/badge/smartAlarm-Flutter%20%7C%20iOS%20%7C%20Android-%2302569B?style=for-the-badge&logo=flutter&logoColor=white)](https://github.com/ThiagoA-Menezes/smartAlarm)
+
+Cross-platform alarm app for Brazilian holidays — AlarmKit (iOS 26), WorkManager (Android), BrasilAPI integration, Riverpod + Drift.
 
 ---
 
