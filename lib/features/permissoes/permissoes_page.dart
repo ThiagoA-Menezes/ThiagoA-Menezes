@@ -92,6 +92,7 @@ class PermissoesPage extends ConsumerWidget {
               ),
               const _CartaoOemBateria(),
             ],
+            if (Platform.isIOS) const _CartaoAlarmKitFoco(),
           ],
         ),
       ),
@@ -164,6 +165,46 @@ class _PermissaoCard extends StatelessWidget {
                   ],
                 ],
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Educação sobre AlarmKit em modo Silencioso/Foco (iOS 26+).
+class _CartaoAlarmKitFoco extends StatelessWidget {
+  const _CartaoAlarmKitFoco();
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16, 6, 16, 16),
+      color: cs.surfaceContainerHighest,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.notifications_paused_outlined, size: 18, color: cs.primary),
+                const SizedBox(width: 8),
+                Text(
+                  'Alarmes e modo Silencioso / Foco',
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'No iOS 26+, os alarmes usam AlarmKit e disparam mesmo com o '
+              'iPhone no modo Silencioso ou com um Foco ativo — idêntico ao '
+              'comportamento do app Relógio nativo.\n\n'
+              'Nenhuma configuração adicional é necessária.',
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 
 import 'package:alarme_feriados/features/alarme_tocando/alarme_tocando_page.dart';
 import 'package:alarme_feriados/features/home/home_page.dart';
+import 'package:alarme_feriados/services/alarm_service.dart';
 import 'package:alarme_feriados/services/reagendador.dart';
 
 class App extends StatefulWidget {
@@ -16,12 +16,12 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final _navigatorKey = GlobalKey<NavigatorState>();
-  late final StreamSubscription<AlarmSettings> _ringSubscription;
+  late final StreamSubscription<AlarmRingEvent> _ringSubscription;
 
   @override
   void initState() {
     super.initState();
-    _ringSubscription = Alarm.ringStream.stream.listen(_onAlarmRing);
+    _ringSubscription = AlarmService.ringStream.listen(_onAlarmRing);
   }
 
   @override
@@ -32,15 +32,15 @@ class _AppState extends State<App> {
 
   // Revalida no momento do disparo antes de exibir a UI.
   // Se hoje for feriado, Reagendador cancela e reagenda silenciosamente.
-  void _onAlarmRing(AlarmSettings settings) {
-    Reagendador.validarDisparo(settings.id).then((deve) {
+  void _onAlarmRing(AlarmRingEvent event) {
+    Reagendador.validarDisparo(event.id).then((deve) {
       if (!deve) return;
       _navigatorKey.currentState?.push(
         MaterialPageRoute<void>(
           fullscreenDialog: true,
           builder: (_) => AlarmeTocandoPage(
-            alarmId: settings.id,
-            titulo: settings.notificationSettings.title,
+            alarmId: event.id,
+            titulo: event.titulo,
           ),
         ),
       );
